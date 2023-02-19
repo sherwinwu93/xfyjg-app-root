@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
     public ModelAndView errorHandler(HttpServletRequest request, HttpServletResponse response, Exception ex) {
         String url = request.getRequestURI().substring(request.getContextPath().length());
 
-        log.info("e->{}", ex);
+        log.error("e->{}", ex);
         AppRuntimeException are;
         if (ex instanceof AppRuntimeException) {
             are = (AppRuntimeException) ex;
