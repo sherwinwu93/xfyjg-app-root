@@ -43,6 +43,7 @@ jwt:
   expiration: 604800 #JWT的超期限时间秒(60*60*24)
   needRefresh: 300 #JWT的刷新剩余时间秒(5*60)
 
+#要输出的日志的级别 debug<info<warn<error
 logging:
   level:
     root: info

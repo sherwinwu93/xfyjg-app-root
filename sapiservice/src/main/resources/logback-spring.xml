@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    日志级别从低到高(越低日志越多): ALL~DEBUG~INFO~WARN~ERROR~OFF
-    debug: 自用
-    info: springboot默认级别
-    warn: 警告信息,比如传参异常
-    error: 服务器错误,比如调用数据库失败
-    -->
+<!--收集日志的配置-->
 <configuration>
     <springProperty scope="context" name="applicationName" source="spring.application.name"/>
+    <springProperty scope="context" name="logLevel" source="logging.level.root"/>
     <!-- 日志地址 -->
     <property name="logPath" value="/xfjyg/logs/"></property>
-    <property name="outputLogLevel" value="ERROR"></property>
     <!-- 最大保存时间 -->
     <property name="maxHistory" value="30"/>
 
@@ -65,9 +59,9 @@
         </rollingPolicy>
     </appender>
 
-    <!--产生的日志-->
+    <!--收集的日志-->
     <springProfile name="default,dev,testing">
-        <root level="${outputLogLevel}">
+        <root level="${logLevel}">
             <appender-ref ref="console"/>
             <appender-ref ref="f_all"/>
             <appender-ref ref="f_warn"/>
@@ -75,7 +69,7 @@
         </root>
     </springProfile>
     <springProfile name="beta,product,demo">
-        <root level="${outputLogLevel}">
+        <root level="${logLevel}">
             <appender-ref ref="console"/>
             <appender-ref ref="f_all"/>
             <appender-ref ref="f_error"/>
