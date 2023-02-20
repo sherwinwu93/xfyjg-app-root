@@ -1,4 +1,4 @@
-package com.xfjyg.sapiservice.controller.test;
+package com.xfjyg.managementservice.controller.test;
 
 import com.google.common.collect.ImmutableMap;
 import com.xfjyg.appcommon.config.redis.RedisCache;

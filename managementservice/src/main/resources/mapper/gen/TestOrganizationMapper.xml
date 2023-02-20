@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfjyg.managementservice.mapper.gen.TestOrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.xfjyg.managementservice.entity.gen.TestOrganization">
+    <id column="test_organization_id" jdbcType="BIGINT" property="testOrganizationId" />
+    <result column="organization_name" jdbcType="VARCHAR" property="organizationName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    test_organization_id, organization_name
+  </sql>
+  <select id="selectByExample" parameterType="com.xfjyg.managementservice.entity.gen.TestOrganizationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from test_organization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test_organization
+    where test_organization_id = #{testOrganizationId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from test_organization
+    where test_organization_id = #{testOrganizationId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xfjyg.managementservice.entity.gen.TestOrganization">
+    insert into test_organization (test_organization_id, organization_name
+      )
+    values (#{testOrganizationId,jdbcType=BIGINT}, #{organizationName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfjyg.managementservice.entity.gen.TestOrganization">
+    insert into test_organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="testOrganizationId != null">
+        test_organization_id,
+      </if>
+      <if test="organizationName != null">
+        organization_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="testOrganizationId != null">
+        #{testOrganizationId,jdbcType=BIGINT},
+      </if>
+      <if test="organizationName != null">
+        #{organizationName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xfjyg.managementservice.entity.gen.TestOrganizationExample" resultType="java.lang.Long">
+    select count(*) from test_organization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfjyg.managementservice.entity.gen.TestOrganization">
+    update test_organization
+    <set>
+      <if test="organizationName != null">
+        organization_name = #{organizationName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where test_organization_id = #{testOrganizationId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfjyg.managementservice.entity.gen.TestOrganization">
+    update test_organization
+    set organization_name = #{organizationName,jdbcType=VARCHAR}
+    where test_organization_id = #{testOrganizationId,jdbcType=BIGINT}
+  </update>
+</mapper>

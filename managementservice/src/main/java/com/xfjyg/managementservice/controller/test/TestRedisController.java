@@ -1,4 +1,4 @@
-package com.xfjyg.sapiservice.controller.test;
+package com.xfjyg.managementservice.controller.test;
 
 import com.xfjyg.appcommon.config.redis.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;

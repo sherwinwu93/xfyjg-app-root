@@ -1,0 +1,52 @@
+server:
+  port: 9980
+spring:
+  application:
+    name: appcommonservice
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://121.199.173.147:3306/xfjyg-testing?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: Qq123456
+  redis:
+    # 地址
+    host: 121.199.173.147
+    # 端口，默认为6379
+    port: 6379
+    # 密码
+    password: szh123456
+    # 连接超时时间
+    timeout: 10s
+redisPrefix: appcommon
+
+mybatis:
+  config-location: classpath:/config/mybatis-configuration.xml
+  mapper-locations: mapper/**/*.xml
+  type-aliases-package: com.xfjyg.appcommonservice.entity
+
+#pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+swagger:
+  host:
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  tokenHead: Bearer  #令牌前缀
+  secret: xfjyg-160819-secret #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间秒(60*60*24)
+  needRefresh: 300 #JWT的刷新剩余时间秒(5*60)
+
+#要输出的日志的级别 debug<info<warn<error
+logging:
+  level:
+    root: info
+    com:
+      xfjyg: debug
+  config: classpath:logback-spring.xml

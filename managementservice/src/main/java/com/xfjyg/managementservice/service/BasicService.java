@@ -1,18 +1,19 @@
-package com.xfjyg.sapiservice.service;
+package com.xfjyg.managementservice.service;
 
+import com.xfjyg.appcommon.exception.ExceptionDef;
+import com.xfjyg.appcommon.exception.runtimeexception.RuntimeExceptionFactory;
 import com.xfjyg.appcommon.utils.BeanUtilz;
-import com.xfjyg.sapiservice.entity.gen.TestResource;
-import com.xfjyg.sapiservice.entity.gen.TestResourceExample;
-import com.xfjyg.sapiservice.entity.gen.TestUser;
-import com.xfjyg.sapiservice.entity.gen.TestUserExample;
-import com.xfjyg.sapiservice.mapper.gen.TestResourceMapper;
-import com.xfjyg.sapiservice.mapper.gen.TestUserMapper;
-import com.xfjyg.sapiservice.security.JwtTokenUtil;
-import com.xfjyg.sapiservice.security.JwtUser;
+import com.xfjyg.appcommon.utils.JwtTokenUtil;
+import com.xfjyg.managementservice.entity.gen.TestResource;
+import com.xfjyg.managementservice.entity.gen.TestResourceExample;
+import com.xfjyg.managementservice.entity.gen.TestUser;
+import com.xfjyg.managementservice.entity.gen.TestUserExample;
+import com.xfjyg.managementservice.mapper.gen.TestResourceMapper;
+import com.xfjyg.managementservice.mapper.gen.TestUserMapper;
+import com.xfjyg.managementservice.security.JwtUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class BasicService {
         String token = null;
         TestUser user = getUserByUsername(username);
         if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
-            throw new BadCredentialsException("用户名或密码不正确");
+            throw RuntimeExceptionFactory.create(ExceptionDef.USER_AUTH_ERR, "用户名或密码不正确");
         }
         JwtUser userDetails = getUserDetails(username);
         token = jwtTokenUtil.generateToken(userDetails);

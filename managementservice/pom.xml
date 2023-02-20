@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.xfjyg</groupId>
-    <artifactId>sapiservice</artifactId>
+    <artifactId>managementservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Sapi Service</name>
-    <description>Xfjyg Sapi Service</description>
+    <name>Management Service</name>
+    <description>Xfjyg Management Service</description>
 
     <properties>
         <java.version>8</java.version>

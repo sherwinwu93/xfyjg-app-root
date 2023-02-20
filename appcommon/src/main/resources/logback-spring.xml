@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--收集日志的配置-->
+<configuration>
+    <springProperty scope="context" name="applicationName" source="spring.application.name"/>
+    <springProperty scope="context" name="logLevel" source="logging.level.root"/>
+    <!-- 日志地址 -->
+    <property name="logPath" value="/xfjyg/logs/"></property>
+    <!-- 最大保存时间 -->
+    <property name="maxHistory" value="30"/>
+
+    <!--控制台日志-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%yellow(%-5p) %date{HH:mm:ss.SSS} - %cyan(%-45c{1}) %m%n</pattern>
+        </encoder>
+    </appender>
+    <!--{appName}.log-->
+    <appender name="f_default" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}${applicationName}.log</file>
+        <encoder>
+            <pattern>[%-5p] %date{HH:mm:ss.SSS,Australia/Perth} - %-45c{1} %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${logLevel}</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}${applicationName}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <appender name="f_warn" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}${applicationName}-warn.log</file>
+        <encoder>
+            <pattern>[%-5p] %date{HH:mm:ss.SSS,Australia/Perth} - %-45c{1} %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}${applicationName}-debug.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <appender name="f_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--输出位置-->
+        <file>${logPath}${applicationName}-error.log</file>
+        <!--输出每条格式-->
+        <encoder>
+            <pattern>[%-5p] %date{HH:mm:ss.SSS,Australia/Perth} - %-45c{1} %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <!--收集的日志级别-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <!--归档策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}${applicationName}-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--收集的日志-->
+    <springProfile name="default,dev,testing">
+        <root level="${logLevel}">
+            <appender-ref ref="console"/>
+            <appender-ref ref="f_default"/>
+            <appender-ref ref="f_warn"/>
+            <appender-ref ref="f_error"/>
+        </root>
+    </springProfile>
+    <springProfile name="beta,product,demo">
+        <root level="${logLevel}">
+            <appender-ref ref="console"/>
+            <appender-ref ref="f_default"/>
+            <appender-ref ref="f_warn"/>
+            <appender-ref ref="f_error"/>
+        </root>
+    </springProfile>
+</configuration>
+
+

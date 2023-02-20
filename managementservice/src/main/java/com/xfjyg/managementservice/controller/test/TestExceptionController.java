@@ -1,4 +1,4 @@
-package com.xfjyg.sapiservice.controller.test;
+package com.xfjyg.managementservice.controller.test;
 
 import com.xfjyg.appcommon.exception.ExceptionDef;
 import com.xfjyg.appcommon.exception.runtimeexception.RuntimeExceptionFactory;
