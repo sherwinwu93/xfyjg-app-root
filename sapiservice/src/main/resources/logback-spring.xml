@@ -72,6 +72,7 @@
         <root level="${logLevel}">
             <appender-ref ref="console"/>
             <appender-ref ref="f_all"/>
+            <appender-ref ref="f_warn"/>
             <appender-ref ref="f_error"/>
         </root>
     </springProfile>
