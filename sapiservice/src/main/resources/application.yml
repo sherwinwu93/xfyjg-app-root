@@ -46,4 +46,6 @@ jwt:
 logging:
   level:
     root: info
+    com:
+      xfjyg: debug
   config: classpath:logback-spring.xml
