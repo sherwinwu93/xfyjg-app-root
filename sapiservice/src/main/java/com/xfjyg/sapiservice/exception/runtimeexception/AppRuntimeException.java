@@ -7,6 +7,7 @@ public class AppRuntimeException extends RuntimeException {
     private int httpStatus;
 
     public AppRuntimeException(int httpStatus, String code, String msg) {
+        super(msg);
         this.httpStatus = httpStatus;
         this.code = code;
         this.msg = msg;

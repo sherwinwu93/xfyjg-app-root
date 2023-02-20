@@ -1,5 +1,8 @@
 package com.xfjyg.sapiservice.controller.test;
 
+import com.xfjyg.sapiservice.exception.ExceptionDef;
+import com.xfjyg.sapiservice.exception.runtimeexception.RuntimeExceptionFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,8 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestExceptionController {
 
     @GetMapping("/byZero")
-    public String byZero() {
+    public ResponseEntity byZero() {
         int i = 1/0;
-        return "2";
+        return ResponseEntity.ok("2");
+    }
+
+    @GetMapping("/custom")
+    public ResponseEntity custom() {
+        throw RuntimeExceptionFactory.create(ExceptionDef.CODE_DUPLICATE_CONTENT);
     }
 }

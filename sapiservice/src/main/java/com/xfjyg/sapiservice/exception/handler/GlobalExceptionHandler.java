@@ -4,6 +4,7 @@ import com.xfjyg.sapiservice.exception.ExceptionDef;
 import com.xfjyg.sapiservice.exception.runtimeexception.AppRuntimeException;
 import com.xfjyg.sapiservice.exception.runtimeexception.RuntimeExceptionFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.remoting.RemoteAccessException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,13 +28,26 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public ModelAndView errorHandler(HttpServletRequest request, HttpServletResponse response, Exception ex) {
-        String url = request.getRequestURI().substring(request.getContextPath().length());
+        if (ex instanceof AppRuntimeException) {
+            return handleAppRuntimeException(request, response, (AppRuntimeException) ex);
+        } else {
+            return handleOtherException(request, response, ex);
+        }
+    }
 
+    private ModelAndView handleAppRuntimeException(HttpServletRequest request, HttpServletResponse response, AppRuntimeException are) {
+        if (StringUtils.startsWith(are.getCode(), ExceptionDef.INFORMATION_PREFIX)) {
+            log.warn("e->{}", are);
+        } else {
+            log.error("e->{}", are);
+        }
+        response.setStatus(are.getHttpStatus());
+        return buildModelAndView(are.getCode(), are.getMsg());
+    }
+    private ModelAndView handleOtherException(HttpServletRequest request, HttpServletResponse response, Exception ex) {
         log.error("e->{}", ex);
         AppRuntimeException are;
-        if (ex instanceof AppRuntimeException) {
-            are = (AppRuntimeException) ex;
-        } else if (ex instanceof DataAccessException) {
+        if (ex instanceof DataAccessException) {
             are = RuntimeExceptionFactory.create(
                     ExceptionDef.CODE_SYS_ERR, "系统错误：请求数据库失败");
         } else if (ex instanceof NullPointerException) {
