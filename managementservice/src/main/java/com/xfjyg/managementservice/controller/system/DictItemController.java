@@ -1,7 +1,7 @@
 package com.xfjyg.managementservice.controller.system;
 
-import com.xfjyg.managementservice.entity.PageQuery;
 import com.xfjyg.managementservice.entity.gen.DictItem;
+import com.xfjyg.managementservice.entity.query.DictItemQuery;
 import com.xfjyg.managementservice.service.system.DictItemService;
 import com.xfjyg.managementservice.utils.R;
 import io.swagger.annotations.Api;
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/system/dict/dictItem")
-@Api("用户管理")
+@Api(description = "系统-字典项")
 public class DictItemController {
     @Autowired
     private DictItemService dictItemService;
 
     @GetMapping("/pageInfo")
     @ApiOperation("获取分页")
-    public R getPageInfo(PageQuery query) {
+    public R getPageInfo(DictItemQuery query) {
         return R.success(dictItemService.getPageInfo(query));
     }
 
@@ -43,6 +43,12 @@ public class DictItemController {
     @GetMapping("/detail")
     @ApiOperation("获取详情")
     public R detail(@RequestParam("dictItemId") Long dictItemId) {
+        return R.success(dictItemService.getDetail(dictItemId));
+    }
+
+    @DeleteMapping("/delete")
+    @ApiOperation("删除")
+    public R delete(@RequestParam("dictItemId") Long dictItemId) {
         return R.success(dictItemService.getDetail(dictItemId));
     }
 }

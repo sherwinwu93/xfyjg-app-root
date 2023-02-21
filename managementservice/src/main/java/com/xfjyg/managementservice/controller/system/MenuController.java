@@ -1,6 +1,7 @@
 package com.xfjyg.managementservice.controller.system;
 
 import com.xfjyg.managementservice.entity.gen.Menu;
+import com.xfjyg.managementservice.entity.query.MenuQuery;
 import com.xfjyg.managementservice.service.system.MenuService;
 import com.xfjyg.managementservice.utils.R;
 import io.swagger.annotations.Api;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/system/menu")
-@Api("用户管理")
+@Api(description = "系统-菜单")
 public class MenuController {
     @Autowired
     private MenuService menuService;
@@ -23,7 +24,7 @@ public class MenuController {
 
     @ApiOperation("获取list")
     @GetMapping("/list")
-    public R getList() {
+    public R getList(@RequestBody MenuQuery query) {
         return R.success(menuService.getList());
     }
 

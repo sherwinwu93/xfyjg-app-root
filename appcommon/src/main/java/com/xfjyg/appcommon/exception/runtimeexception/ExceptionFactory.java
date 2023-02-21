@@ -3,7 +3,7 @@ package com.xfjyg.appcommon.exception.runtimeexception;
 import com.xfjyg.appcommon.exception.ExceptionDef;
 import org.apache.commons.lang3.StringUtils;
 
-public class RuntimeExceptionFactory {
+public class ExceptionFactory {
     private static final long serialVersionUID = 1L;
 
     public static AppRuntimeException create(ExceptionDef codeDef, String message) {

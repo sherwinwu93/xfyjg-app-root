@@ -14,11 +14,11 @@ public class DictItem {
     @ApiModelProperty(value="dictItemValue字典键值")
     private String dictItemValue;
 
-    @ApiModelProperty(value="dictTypeId字典类型")
+    @ApiModelProperty(value="dictTypeId字典类型id")
     private String dictTypeId;
 
-    @ApiModelProperty(value="parentId父标签键值")
-    private String parentId;
+    @ApiModelProperty(value="parentValue父键值(注意不是父id)")
+    private String parentValue;
 
     @ApiModelProperty(value="path父类树")
     private String path;
@@ -28,6 +28,9 @@ public class DictItem {
 
     @ApiModelProperty(value="sort排序值,从小到大")
     private Integer sort;
+
+    @ApiModelProperty(value="status")
+    private Byte status;
 
     public Long getDictItemId() {
         return dictItemId;
@@ -61,12 +64,12 @@ public class DictItem {
         this.dictTypeId = dictTypeId == null ? null : dictTypeId.trim();
     }
 
-    public String getParentId() {
-        return parentId;
+    public String getParentValue() {
+        return parentValue;
     }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId == null ? null : parentId.trim();
+    public void setParentValue(String parentValue) {
+        this.parentValue = parentValue == null ? null : parentValue.trim();
     }
 
     public String getPath() {
@@ -91,5 +94,13 @@ public class DictItem {
 
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 }

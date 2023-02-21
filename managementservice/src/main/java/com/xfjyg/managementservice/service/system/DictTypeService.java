@@ -1,7 +1,7 @@
 package com.xfjyg.managementservice.service.system;
 
 import com.github.pagehelper.PageInfo;
-import com.xfjyg.managementservice.entity.PageQuery;
+import com.xfjyg.managementservice.entity.query.PageQuery;
 import com.xfjyg.managementservice.entity.gen.DictType;
 
 import java.util.List;

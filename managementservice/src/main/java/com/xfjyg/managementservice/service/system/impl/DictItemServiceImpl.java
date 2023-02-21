@@ -1,8 +1,8 @@
 package com.xfjyg.managementservice.service.system.impl;
 
 import com.github.pagehelper.PageInfo;
-import com.xfjyg.managementservice.entity.PageQuery;
 import com.xfjyg.managementservice.entity.gen.DictItem;
+import com.xfjyg.managementservice.entity.query.DictItemQuery;
 import com.xfjyg.managementservice.service.system.DictItemService;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class DictItemServiceImpl implements DictItemService {
     }
 
     @Override
-    public PageInfo<DictItem> getPageInfo(PageQuery query) {
+    public PageInfo<DictItem> getPageInfo(DictItemQuery query) {
         return null;
     }
 

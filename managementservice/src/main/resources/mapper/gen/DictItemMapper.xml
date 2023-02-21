@@ -6,10 +6,11 @@
     <result column="dict_item_label" jdbcType="VARCHAR" property="dictItemLabel" />
     <result column="dict_item_value" jdbcType="VARCHAR" property="dictItemValue" />
     <result column="dict_type_id" jdbcType="VARCHAR" property="dictTypeId" />
-    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="parent_value" jdbcType="VARCHAR" property="parentValue" />
     <result column="path" jdbcType="VARCHAR" property="path" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -41,8 +42,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    dict_item_id, dict_item_label, dict_item_value, dict_type_id, parent_id, path, remark, 
-    sort
+    dict_item_id, dict_item_label, dict_item_value, dict_type_id, parent_value, path, 
+    remark, sort, status
   </sql>
   <select id="selectByExample" parameterType="com.xfjyg.managementservice.entity.gen.DictItemExample" resultMap="BaseResultMap">
     select
@@ -71,11 +72,13 @@
   </delete>
   <insert id="insert" parameterType="com.xfjyg.managementservice.entity.gen.DictItem">
     insert into system_dict_item (dict_item_id, dict_item_label, dict_item_value, 
-      dict_type_id, parent_id, path, 
-      remark, sort)
+      dict_type_id, parent_value, path, 
+      remark, sort, status
+      )
     values (#{dictItemId,jdbcType=BIGINT}, #{dictItemLabel,jdbcType=VARCHAR}, #{dictItemValue,jdbcType=VARCHAR}, 
-      #{dictTypeId,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER})
+      #{dictTypeId,jdbcType=VARCHAR}, #{parentValue,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xfjyg.managementservice.entity.gen.DictItem">
     insert into system_dict_item
@@ -92,8 +95,8 @@
       <if test="dictTypeId != null">
         dict_type_id,
       </if>
-      <if test="parentId != null">
-        parent_id,
+      <if test="parentValue != null">
+        parent_value,
       </if>
       <if test="path != null">
         path,
@@ -103,6 +106,9 @@
       </if>
       <if test="sort != null">
         sort,
+      </if>
+      <if test="status != null">
+        status,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -118,8 +124,8 @@
       <if test="dictTypeId != null">
         #{dictTypeId,jdbcType=VARCHAR},
       </if>
-      <if test="parentId != null">
-        #{parentId,jdbcType=VARCHAR},
+      <if test="parentValue != null">
+        #{parentValue,jdbcType=VARCHAR},
       </if>
       <if test="path != null">
         #{path,jdbcType=VARCHAR},
@@ -129,6 +135,9 @@
       </if>
       <if test="sort != null">
         #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -150,8 +159,8 @@
       <if test="dictTypeId != null">
         dict_type_id = #{dictTypeId,jdbcType=VARCHAR},
       </if>
-      <if test="parentId != null">
-        parent_id = #{parentId,jdbcType=VARCHAR},
+      <if test="parentValue != null">
+        parent_value = #{parentValue,jdbcType=VARCHAR},
       </if>
       <if test="path != null">
         path = #{path,jdbcType=VARCHAR},
@@ -162,6 +171,9 @@
       <if test="sort != null">
         sort = #{sort,jdbcType=INTEGER},
       </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
     </set>
     where dict_item_id = #{dictItemId,jdbcType=BIGINT}
   </update>
@@ -170,10 +182,11 @@
     set dict_item_label = #{dictItemLabel,jdbcType=VARCHAR},
       dict_item_value = #{dictItemValue,jdbcType=VARCHAR},
       dict_type_id = #{dictTypeId,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=VARCHAR},
+      parent_value = #{parentValue,jdbcType=VARCHAR},
       path = #{path,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
-      sort = #{sort,jdbcType=INTEGER}
+      sort = #{sort,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT}
     where dict_item_id = #{dictItemId,jdbcType=BIGINT}
   </update>
 </mapper>

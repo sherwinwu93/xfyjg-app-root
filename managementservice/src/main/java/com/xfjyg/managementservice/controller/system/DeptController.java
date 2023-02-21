@@ -2,6 +2,7 @@ package com.xfjyg.managementservice.controller.system;
 
 import com.xfjyg.managementservice.entity.gen.Dept;
 import com.xfjyg.managementservice.service.system.DeptService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.xfjyg.managementservice.utils.R;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/system/dept")
+@Api(description = "系统-部门")
 public class DeptController {
     @Autowired
     private DeptService deptService;

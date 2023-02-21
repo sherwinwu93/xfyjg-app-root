@@ -2,7 +2,7 @@ package com.xfjyg.appcommon.exception.handler;
 
 import com.xfjyg.appcommon.exception.ExceptionDef;
 import com.xfjyg.appcommon.exception.runtimeexception.AppRuntimeException;
-import com.xfjyg.appcommon.exception.runtimeexception.RuntimeExceptionFactory;
+import com.xfjyg.appcommon.exception.runtimeexception.ExceptionFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.DataAccessException;
@@ -48,22 +48,22 @@ public class GlobalExceptionHandler {
         log.error("e->{}", ex);
         AppRuntimeException are;
         if (ex instanceof DataAccessException) {
-            are = RuntimeExceptionFactory.create(
+            are = ExceptionFactory.create(
                     ExceptionDef.CODE_SYS_ERR, "系统错误：请求数据库失败");
         } else if (ex instanceof NullPointerException) {
-            are = RuntimeExceptionFactory.create(
+            are = ExceptionFactory.create(
                     ExceptionDef.CODE_SYS_ERR, "系统错误：数据加载失败");
         } else if (ex instanceof RemoteAccessException) {
-            are = RuntimeExceptionFactory.create(
+            are = ExceptionFactory.create(
                     ExceptionDef.CODE_SYS_ERR, "系统错误：远程服务未响应");
         } else if (ex instanceof AccessDeniedException) {
-            are = RuntimeExceptionFactory.create(
+            are = ExceptionFactory.create(
                     ExceptionDef.USER_AUTH_ERR);
         } else if (ex instanceof AuthenticationException) {
-            are = RuntimeExceptionFactory.create(
+            are = ExceptionFactory.create(
                     ExceptionDef.USER_PRIVILEGE_ERR);
         } else {
-            are = RuntimeExceptionFactory.create(ExceptionDef.CODE_SYS_ERR, ex.getMessage());
+            are = ExceptionFactory.create(ExceptionDef.CODE_SYS_ERR, ex.getMessage());
         }
         response.setStatus(are.getHttpStatus());
         return buildModelAndView(are.getCode(), are.getMsg());

@@ -1,7 +1,8 @@
 package com.xfjyg.managementservice.controller.system;
 
-import com.xfjyg.managementservice.entity.PageQuery;
+import com.xfjyg.managementservice.entity.query.PageQuery;
 import com.xfjyg.managementservice.entity.gen.User;
+import com.xfjyg.managementservice.entity.query.UserQuery;
 import com.xfjyg.managementservice.service.system.UserService;
 import com.xfjyg.managementservice.utils.R;
 import io.swagger.annotations.Api;
@@ -11,14 +12,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/system/user")
-@Api("用户管理")
+@Api(description = "系统-用户")
 public class UserController {
     @Autowired
     private UserService userService;
 
     @GetMapping("/pageInfo")
     @ApiOperation("获取分页")
-    public R getPageInfo(PageQuery query) {
+    public R getPageInfo(UserQuery query) {
         return R.success(userService.getPageInfo(query));
     }
 

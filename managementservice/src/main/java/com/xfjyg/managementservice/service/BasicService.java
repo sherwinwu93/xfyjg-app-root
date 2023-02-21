@@ -1,7 +1,7 @@
 package com.xfjyg.managementservice.service;
 
 import com.xfjyg.appcommon.exception.ExceptionDef;
-import com.xfjyg.appcommon.exception.runtimeexception.RuntimeExceptionFactory;
+import com.xfjyg.appcommon.exception.runtimeexception.ExceptionFactory;
 import com.xfjyg.appcommon.utils.BeanUtilz;
 import com.xfjyg.appcommon.utils.JwtTokenUtil;
 import com.xfjyg.managementservice.entity.gen.TestResource;
@@ -37,7 +37,7 @@ public class BasicService {
         String token = null;
         TestUser user = getUserByUsername(username);
         if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
-            throw RuntimeExceptionFactory.create(ExceptionDef.USER_AUTH_ERR, "用户名或密码不正确");
+            throw ExceptionFactory.create(ExceptionDef.USER_AUTH_ERR, "用户名或密码不正确");
         }
         JwtUser userDetails = getUserDetails(username);
         token = jwtTokenUtil.generateToken(userDetails);

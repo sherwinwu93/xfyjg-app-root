@@ -1,7 +1,7 @@
 package com.xfjyg.sapiservice.controller.test;
 
 import com.xfjyg.appcommon.exception.ExceptionDef;
-import com.xfjyg.appcommon.exception.runtimeexception.RuntimeExceptionFactory;
+import com.xfjyg.appcommon.exception.runtimeexception.ExceptionFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +19,6 @@ public class TestExceptionController {
 
     @GetMapping("/custom")
     public ResponseEntity custom() {
-        throw RuntimeExceptionFactory.create(ExceptionDef.CODE_DUPLICATE_CONTENT);
+        throw ExceptionFactory.create(ExceptionDef.CODE_DUPLICATE_CONTENT);
     }
 }

@@ -1,6 +1,7 @@
 package com.xfjyg.managementservice.controller.system;
 
-import com.xfjyg.managementservice.entity.PageQuery;
+import com.xfjyg.managementservice.entity.query.DictTypeQuery;
+import com.xfjyg.managementservice.entity.query.PageQuery;
 import com.xfjyg.managementservice.entity.gen.DictType;
 import com.xfjyg.managementservice.service.system.DictTypeService;
 import com.xfjyg.managementservice.utils.R;
@@ -11,14 +12,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/system/dict/dictType")
-@Api("用户管理")
+@Api(description = "系统-字典类型")
 public class DictTypeController {
     @Autowired
     private DictTypeService dictTypeService;
 
     @GetMapping("/pageInfo")
     @ApiOperation("获取分页")
-    public R getPageInfo(PageQuery query) {
+    public R getPageInfo(DictTypeQuery query) {
         return R.success(dictTypeService.getPageInfo(query));
     }
 

@@ -1,4 +1,4 @@
-package com.xfjyg.managementservice.entity;
+package com.xfjyg.managementservice.entity.query;
 
 import lombok.Setter;
 

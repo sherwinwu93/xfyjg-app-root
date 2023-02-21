@@ -1,7 +1,7 @@
 package com.xfjyg.managementservice.service.system.impl;
 
 import com.github.pagehelper.PageInfo;
-import com.xfjyg.managementservice.entity.PageQuery;
+import com.xfjyg.managementservice.entity.query.PageQuery;
 import com.xfjyg.managementservice.entity.gen.DictType;
 import com.xfjyg.managementservice.service.system.DictTypeService;
 import org.springframework.stereotype.Service;

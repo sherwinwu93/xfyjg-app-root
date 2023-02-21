@@ -1,7 +1,7 @@
 package com.xfjyg.managementservice.controller.test;
 
 import com.xfjyg.appcommon.exception.ExceptionDef;
-import com.xfjyg.appcommon.exception.runtimeexception.RuntimeExceptionFactory;
+import com.xfjyg.appcommon.exception.runtimeexception.ExceptionFactory;
 import com.xfjyg.managementservice.utils.R;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +19,6 @@ public class TestExceptionController {
 
     @GetMapping("/custom")
     public R custom() {
-        throw RuntimeExceptionFactory.create(ExceptionDef.CODE_DUPLICATE_CONTENT);
+        throw ExceptionFactory.create(ExceptionDef.CODE_DUPLICATE_CONTENT);
     }
 }

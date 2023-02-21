@@ -14,6 +14,9 @@ public class Menu {
     @ApiModelProperty(value="menuPath菜单路由")
     private String menuPath;
 
+    @ApiModelProperty(value="status启用/禁用")
+    private Byte status;
+
     public Long getMenuId() {
         return menuId;
     }
@@ -36,5 +39,13 @@ public class Menu {
 
     public void setMenuPath(String menuPath) {
         this.menuPath = menuPath == null ? null : menuPath.trim();
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 }

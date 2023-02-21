@@ -15,6 +15,12 @@ public class User {
     @ApiModelProperty(value="password")
     private String password;
 
+    @ApiModelProperty(value="realname")
+    private String realname;
+
+    @ApiModelProperty(value="phone")
+    private String phone;
+
     @ApiModelProperty(value="deptId")
     private Long deptId;
 
@@ -26,6 +32,9 @@ public class User {
 
     @ApiModelProperty(value="updateTime")
     private Date updateTime;
+
+    @ApiModelProperty(value="status")
+    private Byte status;
 
     public Long getUserId() {
         return userId;
@@ -49,6 +58,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname == null ? null : realname.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 
     public Long getDeptId() {
@@ -81,5 +106,13 @@ public class User {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 }

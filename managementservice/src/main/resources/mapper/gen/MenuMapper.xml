@@ -5,6 +5,7 @@
     <id column="menu_id" jdbcType="BIGINT" property="menuId" />
     <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
     <result column="menu_path" jdbcType="VARCHAR" property="menuPath" />
+    <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -36,7 +37,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    menu_id, menu_name, menu_path
+    menu_id, menu_name, menu_path, status
   </sql>
   <select id="selectByExample" parameterType="com.xfjyg.managementservice.entity.gen.MenuExample" resultMap="BaseResultMap">
     select
@@ -64,10 +65,10 @@
     where menu_id = #{menuId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.xfjyg.managementservice.entity.gen.Menu">
-    insert into system_menu (menu_id, menu_name, menu_path
-      )
-    values (#{menuId,jdbcType=BIGINT}, #{menuName,jdbcType=VARCHAR}, #{menuPath,jdbcType=VARCHAR}
-      )
+    insert into system_menu (menu_id, menu_name, menu_path, 
+      status)
+    values (#{menuId,jdbcType=BIGINT}, #{menuName,jdbcType=VARCHAR}, #{menuPath,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.xfjyg.managementservice.entity.gen.Menu">
     insert into system_menu
@@ -81,6 +82,9 @@
       <if test="menuPath != null">
         menu_path,
       </if>
+      <if test="status != null">
+        status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="menuId != null">
@@ -91,6 +95,9 @@
       </if>
       <if test="menuPath != null">
         #{menuPath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -109,13 +116,17 @@
       <if test="menuPath != null">
         menu_path = #{menuPath,jdbcType=VARCHAR},
       </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
     </set>
     where menu_id = #{menuId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xfjyg.managementservice.entity.gen.Menu">
     update system_menu
     set menu_name = #{menuName,jdbcType=VARCHAR},
-      menu_path = #{menuPath,jdbcType=VARCHAR}
+      menu_path = #{menuPath,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
     where menu_id = #{menuId,jdbcType=BIGINT}
   </update>
 </mapper>
