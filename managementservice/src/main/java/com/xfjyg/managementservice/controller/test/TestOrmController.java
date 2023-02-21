@@ -6,7 +6,7 @@ import com.xfjyg.managementservice.entity.gen.TestUser;
 import com.xfjyg.managementservice.entity.gen.TestUserExample;
 import com.xfjyg.managementservice.mapper.gen.TestUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.xfjyg.managementservice.utils.R;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,15 +18,15 @@ public class TestOrmController {
     private TestUserMapper userMapper;
 
     @GetMapping(value = "/user/{userId}")
-    public ResponseEntity user(@PathVariable("userId") Long userId) {
-        return ResponseEntity.ok(userMapper.selectByPrimaryKey(userId));
+    public R user(@PathVariable("userId") Long userId) {
+        return R.success(userMapper.selectByPrimaryKey(userId));
     }
 
     @GetMapping("/pageInfo")
-    public ResponseEntity pageInfo(@RequestParam("pageIndex") Integer pageIndex,
+    public R pageInfo(@RequestParam("pageIndex") Integer pageIndex,
                                    @RequestParam("pageSize") Integer pageSize) {
         PageHelper.startPage(pageIndex, pageSize);
         List<TestUser> testUsers = userMapper.selectByExample(new TestUserExample());
-        return ResponseEntity.ok(new PageInfo<>(testUsers));
+        return R.success(new PageInfo<>(testUsers));
     }
 }

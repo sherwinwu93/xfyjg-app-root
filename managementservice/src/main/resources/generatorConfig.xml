@@ -5,7 +5,7 @@
 <generatorConfiguration>
     <!--<properties></properties>-->
     <!-- 数据库驱动:选择你的本地硬盘上面的数据库驱动包-->
-    <classPathEntry location="C:\Users\wusd\.m2\repository\mysql\mysql-connector-java\5.1.48\mysql-connector-java-5.1.48.jar"/>
+    <classPathEntry location="D:\.m2\repository\mysql\mysql-connector-java\5.1.48\mysql-connector-java-5.1.48.jar"/>
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <!--版本1.3.7 生成mapper.xml时覆盖原文件-->
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
@@ -43,15 +43,35 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="test_user" domainObjectName="TestUser"
+        <table tableName="system_user" domainObjectName="User"
                enableCountByExample="true" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="true"
                selectByExampleQueryId="true"></table>
-        <table tableName="test_resource" domainObjectName="TestResource"
+        <table tableName="system_dept" domainObjectName="Dept"
                enableCountByExample="true" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="true"
                selectByExampleQueryId="true"></table>
-        <table tableName="test_organization" domainObjectName="TestOrganization"
+        <table tableName="system_role" domainObjectName="Role"
+               enableCountByExample="true" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="true"
+               selectByExampleQueryId="true"></table>
+        <table tableName="system_menu" domainObjectName="Menu"
+               enableCountByExample="true" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="true"
+               selectByExampleQueryId="true"></table>
+        <table tableName="system_user_to_role" domainObjectName="UserToRole"
+               enableCountByExample="true" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="true"
+               selectByExampleQueryId="true"></table>
+        <table tableName="system_role_to_menu" domainObjectName="RoleToMenu"
+               enableCountByExample="true" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="true"
+               selectByExampleQueryId="true"></table>
+        <table tableName="system_dict_type" domainObjectName="DictType"
+               enableCountByExample="true" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="true"
+               selectByExampleQueryId="true"></table>
+        <table tableName="system_dict_item" domainObjectName="DictItem"
                enableCountByExample="true" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="true"
                selectByExampleQueryId="true"></table>

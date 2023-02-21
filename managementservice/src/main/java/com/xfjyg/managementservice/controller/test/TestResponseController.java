@@ -3,7 +3,7 @@ package com.xfjyg.managementservice.controller.test;
 import com.google.common.collect.ImmutableMap;
 import com.xfjyg.appcommon.config.redis.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.xfjyg.managementservice.utils.R;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +15,8 @@ public class TestResponseController {
     RedisCache redisCache;
 
     @GetMapping("/json")
-    public ResponseEntity hello() {
-        return ResponseEntity.ok(ImmutableMap.of("hello", "world"));
+    public R hello() {
+        return R.success(ImmutableMap.of("hello", "world"));
     }
 
     @GetMapping("/empty")

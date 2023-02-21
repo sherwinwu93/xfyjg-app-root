@@ -3,7 +3,7 @@ package com.xfjyg.managementservice.controller;
 import com.xfjyg.managementservice.model.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.xfjyg.managementservice.utils.R;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,8 +22,8 @@ public class OrganizationController {
 
 
     @RequestMapping(value="/{organizationId}",method = RequestMethod.GET)
-    public ResponseEntity<Organization> getOrganization(@PathVariable("organizationId") String organizationId) {
-        return ResponseEntity.ok(service.findById(organizationId));
+    public R<Organization> getOrganization(@PathVariable("organizationId") String organizationId) {
+        return R.success(service.findById(organizationId));
     }
 
     @RequestMapping(value="/{organizationId}",method = RequestMethod.PUT)
@@ -32,8 +32,8 @@ public class OrganizationController {
     }
 
     @PostMapping
-    public ResponseEntity<Organization>  saveOrganization(@RequestBody Organization organization) {
-    	return ResponseEntity.ok(service.create(organization));
+    public R<Organization>  saveOrganization(@RequestBody Organization organization) {
+    	return R.success(service.create(organization));
     }
    
     @RequestMapping(value="/{organizationId}",method = RequestMethod.DELETE)
